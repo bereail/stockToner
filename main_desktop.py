@@ -73,8 +73,10 @@ if __name__ == "__main__":
     t.start()
     wait_for_server()
 
-    # Crear ventana nativa
     webview.create_window("StockToner", URL, width=1200, height=800)
+    webview.start(gui="mshtml")
+
+
 
     # Preferir Edge (WebView2). Si no está, caer a mshtml como backup.
     try:

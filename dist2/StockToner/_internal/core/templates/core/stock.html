@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es">
+  <head><meta charset="utf-8"><title>Stock de Toners</title></head>
+  <body>
+    <h1>Stock de Toners</h1>
+    <p><a href="{% url 'retiro' %}">Registrar retiro</a> | <a href="/admin/">Admin</a></p>
+    <table border="1" cellpadding="6">
+      <thead><tr><th>Marca</th><th>Modelo</th><th>Stock</th></tr></thead>
+      <tbody>
+        {% for t in toners %}
+        <tr>
+          <td>{{ t.marca }}</td>
+          <td>{{ t.modelo }}</td>
+          <td>{{ t.stock }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3">Sin toners cargados.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

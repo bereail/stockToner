@@ -4,7 +4,7 @@
 a = Analysis(
     ['main_desktop.py'],
     pathex=[],
-    binaries=[],
+    binaries=[('C:\\Users\\bsolohaga\\Desktop\\bere\\GIT\\stockToner\\.venv\\Lib\\site-packages\\webview\\lib\\runtimes\\win-x64\\native\\WebView2Loader.dll', 'webview\\runtimes\\win-x64\\native'), ('C:\\Users\\bsolohaga\\Desktop\\bere\\GIT\\stockToner\\.venv\\Lib\\site-packages\\webview\\lib\\runtimes\\win-arm64\\native\\WebView2Loader.dll', 'webview\\runtimes\\win-arm64\\native'), ('C:\\Users\\bsolohaga\\Desktop\\bere\\GIT\\stockToner\\.venv\\Lib\\site-packages\\webview\\lib\\runtimes\\win-x64\\native\\WebView2Loader.dll', 'webview\\lib\\runtimes\\win-x64\\native'), ('C:\\Users\\bsolohaga\\Desktop\\bere\\GIT\\stockToner\\.venv\\Lib\\site-packages\\webview\\lib\\runtimes\\win-arm64\\native\\WebView2Loader.dll', 'webview\\lib\\runtimes\\win-arm64\\native')],
     datas=[('core', 'core'), ('core\\templates', 'core\\templates'), ('stocktoner', 'stocktoner'), ('staticfiles', 'staticfiles'), ('db.sqlite3', '.')],
     hiddenimports=[],
     hookspath=[],
@@ -32,7 +32,6 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['assets\\icon.ico'],
 )
 coll = COLLECT(
     exe,
