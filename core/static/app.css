@@ -1,0 +1,51 @@
+/* ===== Tokens (colores de marca y estados) ============================== */
+:root{
+    --bs-body-bg:    #1e66d3;   /* <-- tu nuevo fondo */
+  --bs-body-color: #1f2328;   /* texto principal */
+  --brand: #1b6ef3;
+  --ok:    #2fb344;
+  --warn:  #f59f00;
+  --err:   #d63939;
+}
+
+/* Dark mode autoajuste (opcional) */
+[data-bs-theme="dark"]{
+  --bs-body-bg:#0e1117;     /* ← fondo oscuro */
+  --bs-body-color:#e6edf3;  /* texto claro */
+  --brand:#71a5ff;
+}
+
+/* ===== Controles y botones ============================================= */
+.btn-primary{
+  background: var(--brand);
+  border-color: var(--brand);
+}
+.btn-primary:hover{ filter: brightness(.95); }
+
+/* Más densidad de escritorio */
+.form-control, .form-select{ border-radius: .6rem; }
+.table-sm>:not(caption)>*>*{ padding:.45rem .6rem; }
+
+/* ===== Tablas pro: header sticky, hover, numeros alineados ============== */
+.table thead th{
+  position: sticky; top: 0;
+  background: var(--bs-body-bg);
+  z-index: 1;
+}
+.table-hover tbody tr:hover{
+  outline: 2px solid color-mix(in srgb, var(--brand) 15%, transparent);
+}
+
+/* Alineación numeritos a la derecha */
+.text-num{ text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ===== Badges de stock según nivel ===================================== */
+.badge-stock{
+  font-weight: 600;
+}
+.badge-stock.ok{    background: color-mix(in srgb, var(--ok) 18%, transparent);  color: var(--ok); }
+.badge-stock.warn{  background: color-mix(in srgb, var(--warn) 18%, transparent);color: var(--warn); }
+.badge-stock.err{   background: color-mix(in srgb, var(--err) 18%, transparent); color: var(--err); }
+
+/* ===== Cards suaves ===================================================== */
+.card{ border-radius: 1rem; }

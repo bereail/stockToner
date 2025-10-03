@@ -1,2 +1,74 @@
 {% load static %}
-<link rel="icon" href="{% static 'favicon.ico' %}" sizes="any">
+<!doctype html>
+<html lang="es" data-bs-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}StockToner{% endblock %}</title>
+
+  <!-- Bootstrap + Icons (local) -->
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap-icons/font/bootstrap-icons.min.css' %}">
+  <!-- Tu CSS -->
+  <link rel="stylesheet" href="{% static 'app.css' %}">
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom sticky-top">
+    <div class="container-fluid container-xxl">
+      <a class="navbar-brand fw-semibold" href="{% url 'home' %}">
+        <i class="bi bi-droplet-half me-1"></i> StockToner
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topnav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="topnav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="{% url 'toners:listado' %}"><i class="bi bi-box-seam"></i> Inventario</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'movimientos:listado' %}"><i class="bi bi-arrows-move"></i> Movimientos</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'reportes:index' %}"><i class="bi bi-graph-up"></i> Reportes</a></li>
+        </ul>
+        <form class="d-flex" method="get" action="{% url 'toners:buscar' %}">
+          <input class="form-control form-control-sm me-2" type="search" placeholder="Buscar…" name="q" value="{{ request.GET.q }}">
+          <button class="btn btn-primary btn-sm"><i class="bi bi-search"></i></button>
+        </form>
+        <button id="themeToggle" class="btn btn-outline-secondary btn-sm ms-2" type="button" title="Tema">
+          <i class="bi bi-sun-fill" id="themeIcon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container-xxl py-3">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Bootstrap JS (solo una vez, al final) -->
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <script>
+  // Toggle claro/oscuro (Bootstrap 5.3)
+  (() => {
+    const root = document.documentElement;
+    const saved = localStorage.getItem('bs-theme') || 'light';
+    root.setAttribute('data-bs-theme', saved);
+    const btn = document.getElementById('themeToggle');
+    const icon = document.getElementById('themeIcon');
+    const setIcon = () => icon.className =
+      (root.getAttribute('data-bs-theme') === 'dark')
+        ? 'bi bi-moon-stars-fill'
+        : 'bi bi-sun-fill';
+    setIcon();
+    btn?.addEventListener('click', () => {
+      const next = root.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-bs-theme', next);
+      localStorage.setItem('bs-theme', next);
+      setIcon();
+    });
+  })();
+  </script>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
